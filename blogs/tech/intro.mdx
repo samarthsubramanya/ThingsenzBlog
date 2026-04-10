@@ -1,0 +1,67 @@
+---
+title: Welcome to ThingSenz Blog
+description: Introducing ThingSenz — our IoT brainstorm group, what we've built, and where we're headed next.
+thumbnail: https://thingsenz.github.io/home/static/media/thingsenzlogo.7aed7381.jpeg
+tags: [iot, embedded, intro]
+date: 2022-03-01
+---
+
+# Welcome to Thingsenz Blog
+
+## Who We Are
+
+Thingsenz is a brainstorm group created for participation in various competitions and to put our name on projects developed mainly in the field of **Internet of Things**. The group is managed by three tech enthusiasts who met during our bachelor's study at Dayananda Sagar College of Engineering, Bengaluru, Karnataka, India.
+
+We have developed many project prototypes, participated in domestic competitions, and won first place in several of them. We'll be writing about those in upcoming blogs.
+
+## Core Areas
+
+Hailing from an Electronics background, we were fascinated early on by IoT platforms like **Arduino** and **Raspberry Pi** and their interfacing with a multitude of sensors. We've even worked on the **8051 microcontroller** to understand Assembly language coding at the bare-metal level.
+
+### Some Things We've Worked On
+
+- Sensor fusion with I²C and SPI protocols
+- MQTT-based telemetry pipelines
+- Custom PCB design for sensor nodes
+- Edge inference on microcontrollers
+
+Here's a taste of what our sensor code looks like:
+
+```cpp
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
+
+#define DHTPIN 2
+#define DHTTYPE DHT22
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+}
+
+void loop() {
+  float temperature = dht.readTemperature();
+  float humidity    = dht.readHumidity();
+
+  if (!isnan(temperature) && !isnan(humidity)) {
+    Serial.print("Temp: ");
+    Serial.print(temperature);
+    Serial.print("°C  Humidity: ");
+    Serial.print(humidity);
+    Serial.println("%");
+  }
+
+  delay(2000);
+}
+```
+
+## Connect With Us
+
+- [YouTube Channel](https://www.youtube.com/channel/UChhWwMDf5IB-ZoU-KzEiWfQ/videos?view=0) — project demos and walkthroughs
+- [Instagram](https://www.instagram.com/thingsenz/?hl=en) — quick updates and behind-the-scenes
+- [GitHub Pages](https://thingsenz.github.io/) — our project showcase
+
+More posts coming soon. Stay tuned.

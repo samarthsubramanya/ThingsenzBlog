@@ -1,8 +1,0 @@
-.container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  min-height: 40vh;
-  width: 100%;
-  padding: 20px;
-}

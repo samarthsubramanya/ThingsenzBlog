@@ -1,0 +1,97 @@
+---
+title: Introduction to Spectroscopy
+description: How scientists use light to identify the composition of matter — from lab benchtops to distant stars.
+thumbnail: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Fluorescent_lighting_spectrum_peaks_labelled.svg/1280px-Fluorescent_lighting_spectrum_peaks_labelled.svg.png
+tags: [chemistry, spectroscopy, analytical]
+date: 2024-01-15
+---
+
+## What Is Spectroscopy?
+
+Spectroscopy is the study of how matter **interacts with electromagnetic radiation**. By measuring which wavelengths of light are absorbed, emitted, or scattered by a substance, chemists can determine its identity, structure, and concentration — often without destroying the sample.
+
+The core principle is simple: every element and molecule has a unique "fingerprint" in the electromagnetic spectrum.
+
+## The Electromagnetic Spectrum
+
+Light comes in many forms, and different regions probe different molecular properties:
+
+| Region | Wavelength Range | What It Probes |
+|---|---|---|
+| X-ray | 0.01 – 10 nm | Core electron transitions |
+| UV-Visible | 200 – 800 nm | Valence electron transitions |
+| Infrared (IR) | 2.5 – 25 μm | Molecular vibrations & bonds |
+| Microwave | 1 mm – 1 m | Molecular rotations |
+| NMR (radio) | ~1 m | Nuclear spin states |
+
+## Beer-Lambert Law
+
+The foundation of quantitative UV-Vis spectroscopy is the **Beer-Lambert Law**:
+
+> A = ε · c · l
+
+Where:
+- **A** = absorbance (dimensionless)
+- **ε** = molar absorptivity (L mol⁻¹ cm⁻¹)
+- **c** = concentration (mol L⁻¹)
+- **l** = path length (cm)
+
+This linear relationship lets you calculate concentration directly from measured absorbance — the basis of countless analytical assays.
+
+## Infrared Spectroscopy
+
+IR spectroscopy identifies **functional groups** by their characteristic bond vibration frequencies. A carbonyl (C=O) stretches near 1700 cm⁻¹; an O-H broad stretch appears around 3200–3550 cm⁻¹.
+
+A simple Python snippet to visualize a synthetic IR spectrum:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Wavenumber axis (cm⁻¹)
+wavenumbers = np.linspace(4000, 400, 1000)
+
+def lorentzian(x, x0, gamma, A):
+    return A * (gamma**2 / ((x - x0)**2 + gamma**2))
+
+# Carbonyl C=O stretch ~1715 cm⁻¹
+spectrum = lorentzian(wavenumbers, 1715, 20, 0.9)
+# O-H stretch ~3300 cm⁻¹
+spectrum += lorentzian(wavenumbers, 3300, 200, 0.7)
+# C-H stretch ~2950 cm⁻¹
+spectrum += lorentzian(wavenumbers, 2950, 30, 0.4)
+
+# Convert to transmittance
+transmittance = 1 - np.clip(spectrum, 0, 1)
+
+plt.figure(figsize=(10, 4))
+plt.plot(wavenumbers, transmittance * 100, color='#388bfd', linewidth=1.5)
+plt.gca().invert_xaxis()
+plt.xlabel('Wavenumber (cm⁻¹)')
+plt.ylabel('Transmittance (%)')
+plt.title('Simulated IR Spectrum of a Carboxylic Acid')
+plt.grid(alpha=0.2)
+plt.tight_layout()
+plt.show()
+```
+
+## NMR Spectroscopy
+
+Nuclear Magnetic Resonance (NMR) is arguably the most powerful structural tool in chemistry. Protons (¹H) in different chemical environments resonate at slightly different **chemical shifts** (δ, in ppm).
+
+Key reference points for ¹H NMR:
+- **TMS (tetramethylsilane)** — reference standard at 0 ppm
+- **Alkyl CH₃** — ~0.9 ppm
+- **Aromatic H** — 7.0–8.5 ppm
+- **Aldehyde CHO** — 9–10 ppm
+- **Carboxylic COOH** — 10–12 ppm
+
+## Astronomical Applications
+
+Spectroscopy is not limited to the lab. The **absorption lines** in stellar spectra reveal the chemical composition of stars millions of light-years away. The discovery of helium itself came first from solar spectroscopy in 1868 — before it was ever found on Earth.
+
+The same Beer-Lambert principles that govern a 1 cm cuvette apply to light traveling across the galaxy.
+
+---
+
+Next in this series: **Mass Spectrometry** — how scientists weigh individual molecules.

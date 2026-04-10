@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ════════════════════════════════════════
+     TECH — Terminal theme
+  ════════════════════════════════════════ */
+  :root,
+  .dark {
+    --terminal-bg: 10 10 15;
+    --terminal-surface: 17 17 24;
+    --terminal-text: 226 232 240;
+    --terminal-muted: 107 114 128;
+    --terminal-border: 30 30 46;
+    --terminal-green: 0 255 136;
+    --terminal-cyan: 0 212 255;
+  }
+
+  .light {
+    --terminal-bg: 249 250 247;
+    --terminal-surface: 255 255 255;
+    --terminal-text: 17 24 17;
+    --terminal-muted: 100 116 100;
+    --terminal-border: 209 213 204;
+    --terminal-green: 0 130 70;
+    --terminal-cyan: 0 100 160;
+  }
+
+  /* ════════════════════════════════════════
+     SCIENCE — Deep Lab theme
+  ════════════════════════════════════════ */
+  :root,
+  .dark {
+    --science-bg: 5 10 28;
+    --science-surface: 10 18 48;
+    --science-text: 220 232 255;
+    --science-muted: 100 130 175;
+    --science-border: 25 48 100;
+    --science-primary: 56 139 253;
+    --science-accent: 79 209 247;
+    --science-grid: 20 40 85;
+  }
+
+  .light {
+    --science-bg: 244 247 255;
+    --science-surface: 255 255 255;
+    --science-text: 15 25 65;
+    --science-muted: 90 115 165;
+    --science-border: 190 210 245;
+    --science-primary: 37 99 235;
+    --science-accent: 14 165 233;
+    --science-grid: 210 225 255;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar — tech */
+  .tech-layout * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--terminal-green) / 0.4) rgb(var(--terminal-surface));
+  }
+  .tech-layout *::-webkit-scrollbar { width: 5px; height: 5px; }
+  .tech-layout *::-webkit-scrollbar-track { background: rgb(var(--terminal-surface)); }
+  .tech-layout *::-webkit-scrollbar-thumb {
+    background: rgb(var(--terminal-green) / 0.4);
+    border-radius: 3px;
+  }
+
+  /* Custom scrollbar — science */
+  .science-layout * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--science-primary) / 0.4) rgb(var(--science-surface));
+  }
+  .science-layout *::-webkit-scrollbar { width: 5px; height: 5px; }
+  .science-layout *::-webkit-scrollbar-track { background: rgb(var(--science-surface)); }
+  .science-layout *::-webkit-scrollbar-thumb {
+    background: rgb(var(--science-primary) / 0.4);
+    border-radius: 3px;
+  }
+
+  /* Text selection */
+  .tech-layout ::selection {
+    background-color: rgb(var(--terminal-green) / 0.25);
+    color: rgb(var(--terminal-green));
+  }
+  .science-layout ::selection {
+    background-color: rgb(var(--science-primary) / 0.25);
+    color: rgb(var(--science-accent));
+  }
+}
+
+/* ════════════════════════════════════════
+   GRAPH PAPER — science background
+════════════════════════════════════════ */
+.bg-graph-paper {
+  background-image:
+    linear-gradient(rgb(var(--science-grid) / 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--science-grid) / 0.55) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: rgb(var(--science-bg));
+}
+
+/* ════════════════════════════════════════
+   SCANLINE — tech overlay (dark only)
+════════════════════════════════════════ */
+.dark .tech-layout::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgb(0 0 0 / 0.03) 2px,
+    rgb(0 0 0 / 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ════════════════════════════════════════
+   PROSE — Tech (markdown body)
+════════════════════════════════════════ */
+@layer components {
+  .prose-terminal {
+    @apply text-terminal-text leading-relaxed;
+  }
+  .prose-terminal p {
+    @apply text-terminal-text/90 leading-7 mb-4;
+  }
+  .prose-terminal a {
+    @apply text-terminal-cyan underline underline-offset-2 hover:text-terminal-green transition-colors;
+  }
+  .prose-terminal strong { @apply text-terminal-green font-semibold; }
+  .prose-terminal em { @apply text-terminal-cyan italic; }
+  .prose-terminal blockquote {
+    @apply border-l-4 border-terminal-green/50 pl-4 my-6 text-terminal-muted italic
+           bg-terminal-surface/40 py-3 rounded-r-lg;
+  }
+  .prose-terminal ul { @apply pl-2 my-4 space-y-1.5 list-none; }
+  .prose-terminal ul li { @apply text-terminal-text/90 flex gap-2; }
+  .prose-terminal ul li::before { content: '▸'; @apply text-terminal-green shrink-0 mt-0.5; }
+  .prose-terminal ol { @apply pl-6 my-4 space-y-1.5 list-decimal; }
+  .prose-terminal ol li { @apply text-terminal-text/90; }
+  .prose-terminal ol li::marker { @apply text-terminal-green; }
+  .prose-terminal hr { @apply border-terminal-green/20 my-8; }
+  .prose-terminal img { @apply rounded-lg border border-terminal-green/20 max-w-full my-6; }
+  .prose-terminal table { @apply w-full border-collapse my-6 text-sm; }
+  .prose-terminal thead { @apply bg-terminal-surface; }
+  .prose-terminal th {
+    @apply border border-terminal-green/25 px-4 py-2.5 text-terminal-green text-left font-semibold;
+  }
+  .prose-terminal td { @apply border border-terminal-border/60 px-4 py-2.5 text-terminal-text/80; }
+  .prose-terminal tr:nth-child(even) td { @apply bg-terminal-surface/30; }
+
+  /* ════════════════════════════════════════
+     PROSE — Science (markdown body)
+  ════════════════════════════════════════ */
+  .prose-science {
+    @apply text-science-text leading-relaxed font-sans;
+  }
+  .prose-science p {
+    @apply text-science-text/90 leading-7 mb-4;
+  }
+  .prose-science a {
+    @apply text-science-primary underline underline-offset-2 hover:text-science-accent transition-colors;
+  }
+  .prose-science strong { @apply text-science-primary font-semibold; }
+  .prose-science em { @apply text-science-accent italic; }
+  .prose-science blockquote {
+    @apply border-l-4 border-science-primary/50 pl-4 my-6 text-science-muted italic
+           bg-science-surface/50 py-3 rounded-r-lg;
+  }
+  .prose-science ul { @apply pl-2 my-4 space-y-1.5 list-none; }
+  .prose-science ul li { @apply text-science-text/90 flex gap-2; }
+  .prose-science ul li::before { content: '•'; @apply text-science-primary shrink-0 mt-0.5; }
+  .prose-science ol { @apply pl-6 my-4 space-y-1.5 list-decimal; }
+  .prose-science ol li { @apply text-science-text/90; }
+  .prose-science ol li::marker { @apply text-science-primary; }
+  .prose-science hr { @apply border-science-border my-8; }
+  .prose-science img { @apply rounded-lg border border-science-border max-w-full my-6; }
+  .prose-science table { @apply w-full border-collapse my-6 text-sm; }
+  .prose-science thead { @apply bg-science-surface; }
+  .prose-science th {
+    @apply border border-science-primary/30 px-4 py-2.5 text-science-primary text-left font-semibold;
+  }
+  .prose-science td { @apply border border-science-border px-4 py-2.5 text-science-text/80; }
+  .prose-science tr:nth-child(even) td { @apply bg-science-surface/50; }
+}
+
+/* ════════════════════════════════════════
+   UTILITIES
+════════════════════════════════════════ */
+.glow-green { text-shadow: 0 0 10px rgb(var(--terminal-green) / 0.6); }
+.glow-blue  { text-shadow: 0 0 12px rgb(var(--science-primary) / 0.5); }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.animate-cursor-blink { animation: blink 1s step-end infinite; }

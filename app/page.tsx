@@ -113,7 +113,7 @@ export default function LandingPage() {
           </h2>
 
           <p className="text-sm mb-8 leading-relaxed" style={{ color: 'rgba(100,130,175,1)' }}>
-            Chemistry, physics, materials science, and research.
+            Chemical engineering, materials science, and research.
           </p>
 
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded border text-sm

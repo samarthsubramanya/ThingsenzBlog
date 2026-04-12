@@ -1,6 +1,19 @@
 import Link from 'next/link'
-import { Clock, ArrowRight } from 'lucide-react'
-import type { BlogMeta } from '@/types/blog'
+import { Clock, ArrowRight, FlaskConical, BookOpen } from 'lucide-react'
+import type { BlogMeta, ScienceSubcategory } from '@/types/blog'
+
+const subcategoryConfig: Record<ScienceSubcategory, { label: string; Icon: typeof FlaskConical; cls: string }> = {
+  techniques: {
+    label: 'Techniques & Instruments',
+    Icon: FlaskConical,
+    cls: 'border-science-primary/30 text-science-primary bg-science-primary/5',
+  },
+  digest: {
+    label: 'Research Digest',
+    Icon: BookOpen,
+    cls: 'border-science-accent/30 text-science-accent bg-science-accent/5',
+  },
+}
 
 interface ScienceBlogCardProps {
   blog: BlogMeta
@@ -31,11 +44,16 @@ export function ScienceBlogCard({ blog }: ScienceBlogCardProps) {
         )}
 
         <div className="flex flex-col flex-1 p-5">
-          {/* Category label */}
-          <div className="flex items-center gap-1.5 text-science-primary text-xs mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-science-primary/70" />
-            <span className="font-mono opacity-70">science / {blog.slug}</span>
-          </div>
+          {/* Subcategory badge */}
+          {blog.subcategory && (() => {
+            const cfg = subcategoryConfig[blog.subcategory]
+            return (
+              <div className={`inline-flex items-center gap-1.5 text-xs px-2 py-0.5 rounded-full border mb-3 ${cfg.cls}`}>
+                <cfg.Icon size={10} />
+                {cfg.label}
+              </div>
+            )
+          })()}
 
           <h2 className="text-science-text font-semibold text-lg mb-2 leading-snug
                          group-hover:text-science-primary transition-colors">

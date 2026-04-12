@@ -1,4 +1,4 @@
-import { Terminal, Youtube, Instagram, Mail, Phone, MapPin, Github } from 'lucide-react'
+import { Terminal, Instagram, Mail, Github } from 'lucide-react'
 
 export function Footer() {
   return (

@@ -1,4 +1,5 @@
 export type BlogCategory = 'tech' | 'science'
+export type ScienceSubcategory = 'techniques' | 'digest'
 
 export interface BlogMeta {
   title: string
@@ -9,6 +10,7 @@ export interface BlogMeta {
   tags: string[]
   date?: string
   readingTime?: string
+  subcategory?: ScienceSubcategory
 }
 
 export interface BlogInfo {

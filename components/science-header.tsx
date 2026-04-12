@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Atom } from 'lucide-react'
+import { Atom, PenLine } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { SearchDialog } from './search-dialog'
 
@@ -17,6 +17,15 @@ export function ScienceHeader() {
 
         <div className="flex items-center gap-2">
           <SearchDialog category="science" />
+          <Link
+            href="/editor"
+            title="Open MDX editor"
+            className="p-2 rounded border border-science-border text-science-primary
+                       hover:bg-science-primary/10 hover:border-science-primary/50
+                       transition-all duration-200"
+          >
+            <PenLine size={15} />
+          </Link>
           <ThemeToggle />
         </div>
       </div>

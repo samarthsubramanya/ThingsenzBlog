@@ -146,6 +146,24 @@
   .prose-terminal ol { @apply pl-6 my-4 space-y-1.5 list-decimal; }
   .prose-terminal ol li { @apply text-terminal-text/90; }
   .prose-terminal ol li::marker { @apply text-terminal-green; }
+  /* Headings — needed for editor HTML preview (marked output) */
+  .prose-terminal h1 {
+    @apply text-2xl font-bold text-terminal-text mt-8 mb-4 pb-2 border-b border-terminal-green/20;
+  }
+  .prose-terminal h2 {
+    @apply text-xl font-bold text-terminal-text mt-6 mb-3 pb-2 border-b border-terminal-border;
+  }
+  .prose-terminal h3 { @apply text-lg font-semibold text-terminal-text mt-5 mb-2; }
+  .prose-terminal h4 { @apply text-base font-semibold text-terminal-text mt-4 mb-2; }
+
+  /* Code blocks */
+  .prose-terminal pre {
+    @apply bg-[#0d1117] border border-terminal-green/20 rounded-lg p-4 my-4 overflow-x-auto text-sm;
+  }
+  .prose-terminal pre code {
+    @apply bg-transparent border-0 p-0 text-[rgb(var(--terminal-cyan))];
+  }
+
   .prose-terminal hr { @apply border-terminal-green/20 my-8; }
   .prose-terminal img { @apply rounded-lg border border-terminal-green/20 max-w-full my-6; }
   .prose-terminal table { @apply w-full border-collapse my-6 text-sm; }
@@ -180,6 +198,24 @@
   .prose-science ol { @apply pl-6 my-4 space-y-1.5 list-decimal; }
   .prose-science ol li { @apply text-science-text/90; }
   .prose-science ol li::marker { @apply text-science-primary; }
+  /* Headings — needed for editor HTML preview */
+  .prose-science h1 {
+    @apply text-2xl font-bold text-science-text mt-8 mb-4 pb-2 border-b border-science-border;
+  }
+  .prose-science h2 {
+    @apply text-xl font-bold text-science-text mt-6 mb-3 pb-2 border-b border-science-border;
+  }
+  .prose-science h3 { @apply text-lg font-semibold text-science-text mt-5 mb-2; }
+  .prose-science h4 { @apply text-base font-semibold text-science-text mt-4 mb-2; }
+
+  /* Code blocks */
+  .prose-science pre {
+    @apply bg-science-surface border border-science-border rounded-lg p-4 my-4 overflow-x-auto text-sm;
+  }
+  .prose-science pre code {
+    @apply bg-transparent border-0 p-0 text-science-accent;
+  }
+
   .prose-science hr { @apply border-science-border my-8; }
   .prose-science img { @apply rounded-lg border border-science-border max-w-full my-6; }
   .prose-science table { @apply w-full border-collapse my-6 text-sm; }

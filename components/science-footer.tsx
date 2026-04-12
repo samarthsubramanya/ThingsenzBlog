@@ -1,4 +1,4 @@
-import { Atom, Youtube, Instagram, Mail, Phone, MapPin, Github } from 'lucide-react'
+import { Atom, Instagram, Mail, Github } from 'lucide-react'
 
 export function ScienceFooter() {
   return (
@@ -13,7 +13,6 @@ export function ScienceFooter() {
           <div className="flex items-center gap-5">
             {[
               { href: 'https://www.instagram.com/thingsenz/?hl=en', Icon: Instagram, label: 'Instagram' },
-              { href: 'https://www.youtube.com/channel/UChhWwMDf5IB-ZoU-KzEiWfQ', Icon: Youtube, label: 'YouTube' },
               { href: 'https://thingsenz.github.io/', Icon: Github, label: 'GitHub' },
             ].map(({ href, Icon, label }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
@@ -32,8 +31,7 @@ export function ScienceFooter() {
               <h3 className="text-science-primary font-bold tracking-wide text-sm">ThingSenz India</h3>
             </div>
             <p className="text-science-muted text-sm leading-relaxed">
-              A brainstorm group of tech and science enthusiasts exploring chemistry,
-              IoT, materials science, and emerging technologies.
+              A group of tech enthusiasts exploring interdomain projects, from our undergraduate days.
             </p>
           </div>
 
@@ -42,29 +40,21 @@ export function ScienceFooter() {
               Contact
             </h4>
             <div className="space-y-2 text-sm text-science-muted">
-              <p className="flex items-start gap-2">
-                <MapPin size={13} className="text-science-primary mt-0.5 shrink-0" />
-                <span>c/o Skylink Enterprises, J-94, Anjaneya Block, Sheshadripuram, Bengaluru-560020</span>
-              </p>
+
               <p className="flex items-center gap-2">
                 <Mail size={13} className="text-science-primary shrink-0" />
                 <a href="mailto:thingsenz@gmail.com" className="hover:text-science-primary transition-colors">
                   thingsenz@gmail.com
                 </a>
               </p>
-              <p className="flex items-center gap-2">
-                <Phone size={13} className="text-science-primary shrink-0" />
-                <a href="tel:+919902630775" className="hover:text-science-primary transition-colors">
-                  +91-9902630775
-                </a>
-              </p>
+
             </div>
           </div>
         </div>
 
         <div className="border-t border-science-border pt-5 text-center">
           <p className="text-science-muted text-xs font-mono">
-            © {new Date().getFullYear()} thingsenz.github.io — All rights reserved
+            c {new Date().getFullYear()} thingsenz — All rights reserved. Hosted on Vercel
           </p>
         </div>
       </div>

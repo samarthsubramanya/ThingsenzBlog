@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Terminal } from 'lucide-react'
+import { Terminal, PenLine } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 import { SearchDialog } from './search-dialog'
 
@@ -25,6 +25,15 @@ export function Header() {
         {/* Nav actions */}
         <div className="flex items-center gap-2">
           <SearchDialog category="tech" />
+          <Link
+            href="/editor"
+            title="Open MDX editor"
+            className="p-2 rounded border border-terminal-green/30 text-terminal-green
+                       hover:bg-terminal-green/10 hover:border-terminal-green/60
+                       transition-all duration-200"
+          >
+            <PenLine size={15} />
+          </Link>
           <ThemeToggle />
         </div>
       </div>

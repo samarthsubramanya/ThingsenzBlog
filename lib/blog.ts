@@ -30,6 +30,7 @@ export function getAllBlogs(category?: BlogCategory): BlogMeta[] {
         slug: file.replace('.mdx', ''),
         category: cat,
         readingTime: stats.text,
+        subcategory: data.subcategory,
       })
     }
   }
@@ -56,6 +57,7 @@ export function getBlogBySlug(slug: string, category: BlogCategory): BlogInfo {
       slug,
       category,
       readingTime: stats.text,
+      subcategory: data.subcategory,
     },
     content,
     readingTime: stats.text,
